@@ -1,45 +1,48 @@
+// Task 1
+
 function convertFahrToCelsius(Temp) {
 
   let fTemp = Temp;
   let fToCel = (fTemp - 32) * 5/9;
   let finalFToCel = fToCel.toFixed(4);
   
-  if((isNaN(fTemp) === true) && (Array.isArray(fTemp)) !==true ) {
+  if ((isNaN(fTemp) === true) && (Array.isArray(fTemp)) !== true ) {
     let stringFtemp = JSON.stringify(fTemp);
-    console.log(`${stringFtemp} is not a valid number but a/an` + typeof fTemp);
+    console.log(`${stringFtemp} is not a valid number but a/an ` + typeof fTemp);
     
-    return `${stringFtemp} is not a valid number but a/an` + typeof fTemp
+    return `${stringFtemp} is not a valid number but a/an ` + typeof fTemp
   }
 
-  if ((isNaN(fTemp) === false) && (/^ *$/.test(fTemp)) == false && ((fTemp !== 'boolean'))) {
-    console.log(fToCel); 
-    return fToCel;
-} 
+  if ((isNaN(fTemp) === false) && (/^ *$/.test(fTemp)) == false && ((typeof fTemp !== 'boolean'))) {
+    console.log(finalFToCel); 
+    return finalFToCel;
+  } 
 
 if (/^ *$/.test(fTemp) && (fTemp == [])) {
-  console.log(`${fTemp} is not a valid number but a/an` + typeof fTemp); 
-  return `${fTemp} is not a valid number but a/an` + typeof fTemp
+  console.log(`${fTemp} is not a valid number but a/an ` + typeof fTemp); 
+  return `${fTemp} is not a valid number but a/an ` + typeof fTemp
 }
 
-if ((fTemp === 'boolean') ) {
-  console.log(`${fTemp} is not a valid number but a/an` + typeof fTemp); 
-  return `${fTemp} is not a valid number but a/an` + typeof fTemp
+if ((typeof fTemp === 'boolean')) {
+  console.log(`${fTemp} is not a valid number but a/an ` + typeof fTemp); 
+  return `${fTemp} is not a valid number but a/an ` + typeof fTemp
 }
 
 if ((Array.isArray(fTemp)) === true) {
-  let ArrayOffTemp = JSON.stringify(fTemp);
-  console.log( `${ArrayOffTemp} is not a valid number but an Array`); 
-  return `${ArrayOffTemp} is not a valid number but an Array`
+  let ArrayOfFTemp = JSON.stringify(fTemp);
+  console.log( `${ArrayOfFTemp} is not a valid number but an Array `); 
+  return `${ArrayOfFTemp} is not a valid number but an Array `
 }
 
 return finalFToCel;
 
 }
 
-convertFahrToCelsius(true);
+convertFahrToCelsius(0);
 convertFahrToCelsius('0');
 convertFahrToCelsius("");
 convertFahrToCelsius({});
+convertFahrToCelsius(true);
 convertFahrToCelsius([1,2,3]);
 convertFahrToCelsius({temp: 0});
 
@@ -48,63 +51,146 @@ convertFahrToCelsius({temp: 0});
 
 function checkYuGiOh(n) {
   numbersArray = [];
-    for (let i = 1; i <= n; i++)
-    {
+    for (let i = 1; i <= n; i++) {
         numbersArray.push(i)
-        console.log(i);
       }
-      console.log(numbersArray);
+      
   
       newArray = [];
-      numbersArray.map(item => {
-        if (item % 2 === 0) {
-          newArray.push(item)
+      numbersArray.map(num => {
+        if ((num % 2 === 0) && (num % 3 !== 0) && (num % 5 !== 0)) {
+          newArray.push(num)
         }
       });
-      console.log(newArray)
 
       newArray1 = [];
-      numbersArray.map(item1 => {
-        if (item1 % 3 === 0) {
-          newArray1.push(item1)
+      numbersArray.map(num => {
+        if ((num % 3 === 0) && (num % 2 !== 0) && (num % 5 !== 0)) {
+          newArray1.push(num)
         }
       });
-      console.log(newArray1)
 
       newArray2 = [];
-      numbersArray.map(item2 => {
-        if (item2 % 5 === 0) {
-          newArray2.push(item2)
+      numbersArray.map(num => {
+        if ((num % 5 === 0) && (num % 2 !== 0) && (num % 3 !== 0)) {
+          newArray2.push(num)
         }
       });
-      console.log(newArray2)
 
       newArray3 = [];
-      numbersArray.map(item3 => {
-        if ((item3 % 2 === 0) && (item3 % 3 === 0)) {
-          newArray3.push(item3)
+      numbersArray.map(num => {
+        if ((num % 2 === 0) && (num % 3 === 0) && (num % 5 !== 0)) {
+          newArray3.push(num)
         }
       });
-      console.log(newArray3)
 
       newArray4 = [];
-      numbersArray.map(item4 => {
-        if ((item4 % 3 === 0) && (item4 % 5 === 0)) {
-          newArray4.push(item4)
+      numbersArray.map(num => {
+        if ((num % 2 === 0) && (num % 5 === 0) && (num % 3 !== 0)) {
+          newArray4.push(num)
         }
       });
-      console.log(newArray4)
 
       newArray5 = [];
-      numbersArray.map(item5 => {
-        if ((item5 % 2 === 0) && (item5 % 3 === 0) && (item5 % 5 === 0)) {
-          newArray2.push(item5)
+      numbersArray.map(num => {
+        if ((num % 3 === 0) && (num % 5 === 0) && (num % 2 !== 0)) {
+          newArray5.push(num)
         }
       });
-      console.log(newArray5)
+
+      newArray6 = [];
+      numbersArray.map(num => {
+        if ((num % 2 === 0) && (num % 3 === 0) && (num % 5 === 0)) {
+          newArray6.push(num)
+        }
+      });
+
+      for (const item of newArray) {
+        if (numbersArray.includes(newArray[newArray.indexOf(item)])) {
+          position = numbersArray.indexOf(item);
+          numbersArray.splice(position, 1,'yu');
+        }
+      }
+
+      for (const item1 of newArray1) {
+        if (numbersArray.includes(newArray1[newArray1.indexOf(item1)])) {
+          position1 = numbersArray.indexOf(item1);
+          numbersArray.splice(position1, 1,'gi');
+        }
+      }
+
+      for (const item2 of newArray2) {
+        if (numbersArray.includes(newArray2[newArray2.indexOf(item2)])) {
+          position2 = numbersArray.indexOf(item2);
+          numbersArray.splice(position2, 1,'oh');
+        }
+      }
+
+      for (const item3 of newArray3) {
+        if (numbersArray.includes(newArray3[newArray3.indexOf(item3)])) {
+          position3 = numbersArray.indexOf(item3);
+          numbersArray.splice(position3, 1,'yu-gi');
+        }
+      }
+
+      for (const item4 of newArray4) {
+        if (numbersArray.includes(newArray4[newArray4.indexOf(item4)])) {
+          position4 = numbersArray.indexOf(item4);
+          numbersArray.splice(position4, 1,'yu-oh');
+        }
+      }
+
+      for (const item5 of newArray5) {
+        if (numbersArray.includes(newArray5[newArray5.indexOf(item5)])) {
+          position5 = numbersArray.indexOf(item5);
+          numbersArray.splice(position5, 1,'gi-oh');
+        }
+      }
+
+      for (const item6 of newArray6) {
+        if (numbersArray.includes(newArray6[newArray6.indexOf(item6)])) {
+          position6 = numbersArray.indexOf(item6);
+          numbersArray.splice(position6, 1,'yu-gi-oh');
+        }
+      }
+
+      if ((isNaN(n) === true) && (Array.isArray(n)) !== true) {
+        let value = JSON.stringify(n);
+        console.log(`invalid parameter: ${value}`); 
+        return `invalid parameter: ${value}`;
     }
 
-      checkYuGiOh(30)
+      if ((isNaN(n) === false) && (/^ *$/.test(n)) == false  && ((typeof(n) !== 'boolean'))) {
+          console.log(numbersArray); 
+          return numbersArray;
+      }
+
+      if ((typeof(n) === 'boolean') ) {
+          console.log(`invalid parameter: ${n}`);
+          return `invalid parameter: ${n}`;
+      }
+
+      if (/^ *$/.test(n) && (n == [])) {
+          console.log(`invalid parameter: ${n}`);
+          return `invalid parameter: ${n}`;
+      }
+
+      if ((Array.isArray(n)) === true) {
+          let value = JSON.stringify(n);
+          console.log(`invalid parameter: ${value}`); 
+          return `invalid parameter: ${value}`;
+      }
+
+  console.log(numbersArray);
+  return numbersArray;
+
+}
+
+      checkYuGiOh(30);
+      checkYuGiOh(true);
+      checkYuGiOh("10");
+      checkYuGiOh("Fizz Buzz is meh");
+
   
 
 
